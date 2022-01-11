@@ -25,15 +25,27 @@ function setup() {
 }
 
 function draw() {
-  background(red, green, blue);
+    
+    const synth = new Tone.Synth().toMaster()
+synth.triggerAttackRelease('C4', '8n')
 
-  var h4 = windowHeight / 4;
-  var h2 = windowHeight / 2;
-  var w2 = windowWidth / 2;
-  var timer = frameCount * 0.05;
-  
-  for (var i = 0; i < numDots; i++) {
-    var pct = i / numDots;
-    ellipse(w2 + sin(timer + TAU * pct) * h4, h2 + cos(timer + TAU * pct) * h4, 80, 80);
+document.getElementById("play-button").addEventListener("click", function() {
+  if (Tone.Transport.state !== 'started') {
+    Tone.Transport.start();
+  } else {
+    Tone.Transport.stop();
+  }
+});
+    
+//  background(red, green, blue);
+//
+//  var h4 = windowHeight / 4;
+//  var h2 = windowHeight / 2;
+//  var w2 = windowWidth / 2;
+//  var timer = frameCount * 0.05;
+//  
+//  for (var i = 0; i < numDots; i++) {
+//    var pct = i / numDots;
+//    ellipse(w2 + sin(timer + TAU * pct) * h4, h2 + cos(timer + TAU * pct) * h4, 80, 80);
   }
 }
